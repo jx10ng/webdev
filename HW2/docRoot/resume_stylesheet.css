@@ -46,9 +46,9 @@
 	.div1 {
 		text-align: center;
 		width: 100%;
-		display:inline-block;
-		/*float:center;*/
-		/*margin-left: 100pt*/
+		display:inline-block; /*"display:inline-block" treats div as a text so that "text-align:center may work"
+		/*float:center;*/ 
+		/*Note: "float:center" previously used and provided same result as display:inline-block*/
 	}
 	.image1 {
 		width:132px; 
