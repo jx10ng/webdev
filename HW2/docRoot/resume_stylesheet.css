@@ -46,7 +46,8 @@
 	.div1 {
 		text-align: center;
 		width: 100%;
-		float:center;
+		display:inline-block;
+		/*float:center;*/
 		/*margin-left: 100pt*/
 	}
 	.image1 {
