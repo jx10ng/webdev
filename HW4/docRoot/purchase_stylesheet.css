@@ -1,0 +1,9 @@
+table {
+	border-style: solid;
+	border-radius: 20px;
+	border-width: 5px;
+}
+
+td {
+	column-width: 75px;
+}

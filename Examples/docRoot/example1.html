@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script>
+
+function f(){
+	var text = document.getElementById("myinput");
+	document.getElementById("display").innerHTML = text.value;
+	//alert (text.value); /*this is if you want an alert box*/
+}
+</script>
+</head>
+
+<body>
+	<h1 id = display> What will you type?</h1>
+	<form>
+		<input type = "text" size = "50" id = myinput ></input>
+		<button type = "button" onclick = "javascript:return f()">Click Here</button>
+	</form>
+</body>
+
+</html>
