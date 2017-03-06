@@ -7,3 +7,9 @@ table {
 td {
 	column-width: 75px;
 }
+
+.divdisplay {
+	text-align: left;
+	width:100%;
+	display:inline-block;
+}
