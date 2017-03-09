@@ -1,0 +1,15 @@
+table {
+	border-style: solid;
+	border-radius: 20px;
+	border-width: 5px;
+}
+
+td {
+	column-width: 75px;
+}
+
+.divdisplay {
+	text-align: left;
+	width:100%;
+	display:inline-block;
+}
