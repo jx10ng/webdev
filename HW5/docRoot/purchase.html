@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>purchase</title>
+	<link rel="stylesheet" type="text/css" href="purchase_stylesheet.css">
+	<script src = "./purchase.js"></script>
+</head>
+<body>
+	<!--
+	<p id="demo">hi there</p>
+	<p>
+	Take a look at <a href = "./getOrder.json" target = "_blank"> getOrder </a>
+	</p>
+	-->
+	<!--Customer Information Section -->
+	<h2>Customer Information</h2>
+	<div>
+		<div>Name:</div><div id = "custname">Customer Name</div>
+		<br/>
+		<div>Address:</div><div id = "custadd">Customer Address</div>
+	</div>
+	
+	</br> <!--break -->
+
+	<!--Purchase Details Section-->
+	<h2>Purchase Details</h2>
+	<div id = mydiv>
+		
+	</div>
+
+	</br><!--break -->
+
+	<!--Table for Totals -->
+	<table>
+		<thead>
+			<tr><th>Purchase Summary</th><th>Cost</th></tr>
+		</thead>
+		<tbody>
+			<tr id = "rowitem"><td>Items</td><td id = "itemsamt">Item Amount</td></tr>
+			
+			<tr id = "rowtax"><td>Taxes (10%)</td><td id = "taxamt">Tax Amount</td></tr>
+			
+			<tr id = "rowship"><td>Shipping</td><td id = "shipamt">Ship Amount</td></tr>
+			
+			<tr id = "rowtotal"><td>Purchase Total</td><td id = "totalamt">Total Amount</td></tr>
+		</tbody>
+	</table>
+	
+	</br><!--break -->
+
+	<!-- Payment Information Section --> 
+	<h2>Payment Information</h2> 
+	<form name = "creditcard" method = "post" action = ""> <!--Need a server-->
+		<p>Credit Card Number: <input type = "text" id = cdnum></p>
+		<p>Expiration Date: <input type = "date" id = dateexp></p>
+		<input type = "button" id = "btnsubmit" value = "Submit">
+	</form>
+</body>
+
+

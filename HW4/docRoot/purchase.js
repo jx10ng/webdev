@@ -4,12 +4,12 @@ var order = {
 		"item1":{
 			"description": "Hat", 
 			"price": 200,
-			"quantity": 1
+			"quantity": 3
 		},
 		"item2": {
 			"description": "Shoe", 
 			"price": 20,
-			"quantity":1
+			"quantity":2
 		},
 		"item3":{
 			"description": "Pants", 

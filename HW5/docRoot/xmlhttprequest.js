@@ -1,44 +1,21 @@
 "use strict";
-//order details
-var order = {
-	"itemlist": {
-		"item1":{
-			"description": "Hat", 
-			"price": 200,
-			"quantity": 3
-		},
-		"item2": {
-			"description": "Shoe", 
-			"price": 20,
-			"quantity":2
-		},
-		"item3":{
-			"description": "Pants", 
-			"price": 100,
-			"quantity":1
-		},
-		"item4": {
-			"description": "Shirt", 
-			"price": 10,
-			"quantity":1
-		},
-		"item5": {
-			"description": "Dress", 
-			"price": 100,
-			"quantity":1
-		}
-	},
-	"customer": {
-		"name": "Grey Wilson",
-		"address": "1234 Strawberry Creek, Berkeley, CA 94704"
-	}
-}
-
-//alert("order: " + JSON.stringify(order));
-
 
 //onload, insert all customer and item details into HTML with this function
 window.onload = function (){
+	//retrieving JSON file information
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	        var order = JSON.parse(this.responseText);
+	        //document.getElementById("demo").innerHTML = order.customer.name;
+	        //for testing purposes
+	        alert ("Order details: " + JSON.stringify(order));
+	    }
+	    else alert("Error has occurred");
+	}
+	xmlhttp.open("GET", "getOrder.json", true);
+	xmlhttp.send();
+
 	//insert customer name
 	var customer_name = document.getElementById("custname");
 	customer_name.textContent = order.customer.name;
@@ -60,7 +37,7 @@ window.onload = function (){
 		newitemdiv.className = "divdisplay";
 		
 		//create a string for the descritpion, price, and quantity
-		var myitem = "Description: " + order.itemlist["item"+num].description + " Price: $" + order.itemlist["item"+num].price + " Quantity: " + order.itemlist["item"+num].quantity;
+		var myitem = "Description: " + order.itemlist["item"+ num].description + " Price: $" + order.itemlist["item"+num].price + " Quantity: " + order.itemlist["item"+num].quantity;
 		
 		//create a textnode for the description, price, and quantity
 		var newitemtext = document.createTextNode(myitem);
@@ -92,25 +69,23 @@ window.onload = function (){
 		//append div node (with input button) to Purchase Details div node
 		list.appendChild(newinputdiv);
 	}
-
 	recal(); //calculate the Purchase Summary
-
 }
 
 
 //delete items from Purchase Details
 function fDelete(e){ //e is for event
-	var num = e.target.index; // index of the element that triggered the event
+	num = e.target.index; // index of the element that triggered the event
 	//if quantity > 1
 	//remove one quantity from item in itemlist object
-	//alert("num: " + num); /*for testing purposes*/
-	if (order.itemlist["item"+num].quantity > 0) {
+	//alert("num: " + num); 
+	if (order.itemlist["item" + num].quantity > 0) {
 		//delete 1 quantity
-		order.itemlist["item"+num].quantity -= 1
+		order.itemlist["item" + num].quantity -= 1
 		//alert("quantity: " + order.itemlist["item"+num].quantity);	
 
 		//Change the display of quanity on screen
-		var newtext = "Description: " + order.itemlist["item" + num].description + " Price: $" + order.itemlist["item" + num].price + " Quantity: " + order.itemlist["item" + num].quantity;
+		var newtext = "Description: " + order.itemlist["item" + num].description + " Price: $" + order.itemlist["item"+ num].price + " Quantity: " + order.itemlist["item" + num].quantity;
 		//create textnode
 		var newtextnode = document.createTextNode(newtext); 
 		
@@ -125,7 +100,7 @@ function fDelete(e){ //e is for event
 
 	}
 	//if quanity < 1
-	if (order.itemlist["item"+num].quantity < 1) {
+	if (order.itemlist["item" + num].quantity < 1) {
 		//indicate div for text details
 		var changediv = document.getElementById("itemdiv" + num); 
 
@@ -145,7 +120,7 @@ function fDelete(e){ //e is for event
 //recalculate Purchase Summary
 function recal(){
 	var sum = 0;
-	for (var i = 0; i<Object.keys(order.itemlist).length; i++){
+	for (i = 0; i<Object.keys(order.itemlist).length; i++){
 		var num = i + 1; 
 		sum = sum + (order.itemlist["item" + num].price)*(order.itemlist["item" + num].quantity);
 	}
@@ -171,7 +146,4 @@ function recal(){
 	var total_amt = document.getElementById("totalamt");
 	var total_amt_val = Number(item_amt.textContent) + Number(tax_amt.textContent)+ Number(ship_amt.textContent);
 	total_amt.textContent = total_amt_val;
-
-
 }
-

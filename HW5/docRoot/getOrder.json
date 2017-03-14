@@ -1,4 +1,3 @@
-
 {
 	"itemlist": {
 		"item1":{
@@ -30,6 +29,5 @@
 	"customer": {
 		"name": "Grey Wilson",
 		"address": "1234 Strawberry Creek, Berkeley, CA 94704"
-	},
-	"creditcardnum":123456789 
+	}
 }
