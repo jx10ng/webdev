@@ -15,7 +15,15 @@
     <!--Bootstrap CSS link --> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <!--CSS file reference -->
+    <link ref = "stylesheet" type = "text/css" href = "resume.css">
+    
+    <!--JS file reference -->
     <script src = "resume.js"></script>
+
+    <!--Obtain Google font Mukta Vaani -->
+    <link href = "https://fonts.googleapis.com/css?family=Mukta+Vaani" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Resume Julia Xiong</title>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,26 +34,25 @@
     <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Julia Xiong</a>
+  <!--Navation bar --> 
+    <nav class = "navbar navbar-inverse">
+      <div class = "container-fluid">
+        <div class = "navbar-header">
+          <a class = "navbar-brand" href = "#">Julia Xiong</a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a href="resume_summary.html">Summary</a></li>
-          <li class="active"><a href="#">Contact</a></li>
-          <li><a href="resume_references.html">References</a></li>
+          <li><a href = "summary.html" class = "load-content">Summary</a></li>
+          <li><a href = "contact.html" class = "load-content">Contact</a></li>
+          <li><a href = "references.html" class = "load-content">References</a></li>
         </ul>
       </div>
     </nav>
-      
-    <div class="container">
-      <h3>Contact</h3>
-      <div>Email: jxiong@example.com</div>
-      <div>Phone: 510-123-4567</div>
-      <div>Address: 9876 Apple Tree Lane, Berkeley, CA 94701</div>
 
-    </div>
+    <!-- Page content --> 
+    <h1 id = "title"></h1>
+    <div id = "content"></div>
+
+  </body>
     
   </body>
 </html>
