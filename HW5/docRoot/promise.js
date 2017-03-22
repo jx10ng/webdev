@@ -1,58 +1,52 @@
-"use strict";
+//onload, insert all customer and item details into HTML with this function
 window.onload = function (){
-//object prototype for items
-	function Item (description, price, quantity){
-		this.description = description;
-		this.price = price;
-		this.quantity = quantity;
-	}
 
-	//create constructors items
-	var item1 = new Item ("Sweater", 40, 2);
-	var item2 = new Item ("Skirt", 20, 1);
-	var item3 = new Item ("Socks", 10, 1);
+//XHR request that creates a promise
+function get("getOrder.json") {
+  // Return a new promise
+  	return new Promise( function(resolve, reject) {
+	    var xmlhttp = new XMLHttpRequest(); 
+	    xmlhttp.open('GET', "getOrder.json");
 
-	//create array with the new item objects
-	var itemlist = [item1, item2, item3];
+	    xmlhttp.onload = function() {
+	    	//if everything works 
+			if (xmlhttp.status == 200) {
+				resolve(xmlhttp.response);
+				document.getElementById("vieworder").innerHTML = xmlhttp.responseText;
+	    		var order = JSON.parse(xmlhttp.responseText);
+	    		fillOrder(order);
+			}
+			//if error occurs
+			else {
+				reject(Error(xmlhttp.statusText)); 
+			}
+		};
 
-	//object prototype for customer
-	function Customer (name, address){
-		this.name = name;
-		this.address = address;
-	}
+		//Handle network errors
+		xmlhttp.onerror = function() {			
+			reject( Error("Network Error") );
+		};
 
-	//create constructor for customer
-	var customer = new Customer ("Jasmine Banks", "9876 Walnut Ave Springfield, IL 75118");
-
-	//create one object with itemlist and customer information 
-	var order = {itemlist, customer};
-	//alert ("my order details: " + JSON.stringify(order)); //display object 
-
-
-	//Testing for the order object with a try/catch error
-	try {
-		errcheck ()
-		//throw within try block is computationally expensive, best to use if/else if possible
-		//best to have error finding (actual function with list of possible errors) and error handling (try/catch) separate
-		//Do not want the try/catch within a function, because this does the error finding and error handling
-		//we may want 
-	}
-	catch(err) {
-		window.alert("Error: " + err);
-	}
+	    // Make the request
+		xmlhttp.send();
+	});
 	
+	get("getOrder.json").then(function(response) {console.log("Success!", response);}, function(error) {console.error("Failed!", error);})
+}
 
+function fillOrder(order){
+//Customer Information and Purchase Details
 	//insert customer name
 	var customer_name = document.getElementById("custname");
-		customer_name.textContent = order.customer.name;
-		
+	customer_name.textContent = order.customer.name;
+	
 	//insert customer address
 	var customer_add = document.getElementById("custadd");
-		customer_add.textContent = order.customer.address;
+	customer_add.textContent = order.customer.address;
 
 	//identify div that will store purchase details
 	var list = document.getElementById("mydiv");
-
+	
 	//create Purchase Details with for loop
 	for (var i = 0; i < Object.keys(order.itemlist).length; i++){
 		var num = i + 1;
@@ -63,7 +57,7 @@ window.onload = function (){
 		newitemdiv.className = "divdisplay";
 		
 		//create a string for the descritpion, price, and quantity
-		var myitem = "Description: " + order.itemlist[i].description + " Price: $" + order.itemlist[i].price + " Quantity: " + order.itemlist[i].quantity;
+		var myitem = "Description: " + order.itemlist["item"+num].description + " Price: $" + order.itemlist["item"+num].price + " Quantity: " + order.itemlist["item"+num].quantity;
 		
 		//create a textnode for the description, price, and quantity
 		var newitemtext = document.createTextNode(myitem);
@@ -73,6 +67,7 @@ window.onload = function (){
 		
 		//append div node (with text) to Purchase Details div node
 		list.appendChild(newitemdiv);		
+
 
 		//create a input node that is a button
 		var newinput = document.createElement("input");
@@ -99,20 +94,19 @@ window.onload = function (){
 
 
 
-
-	//Function for deleting items from Purchase Details
+	//delete items from Purchase Details
 	function fDelete(e){ //e is for event
-		num = e.target.index; // index of the element that triggered the event
+		var num = e.target.index; // index of the element that triggered the event
 		//if quantity > 1
 		//remove one quantity from item in itemlist object
-		//alert("num: " + num); 
-		if (order.itemlist[num-1].quantity > 0) {
+		//alert("num: " + num); /*for testing purposes*/
+		if (order.itemlist["item"+num].quantity > 0) {
 			//delete 1 quantity
-			order.itemlist[num-1].quantity -= 1
+			order.itemlist["item"+num].quantity -= 1
 			//alert("quantity: " + order.itemlist["item"+num].quantity);	
 
 			//Change the display of quanity on screen
-			var newtext = "Description: " + order.itemlist[num-1].description + " Price: $" + order.itemlist[num-1].price + " Quantity: " + order.itemlist[num-1].quantity;
+			var newtext = "Description: " + order.itemlist["item" + num].description + " Price: $" + order.itemlist["item" + num].price + " Quantity: " + order.itemlist["item" + num].quantity;
 			//create textnode
 			var newtextnode = document.createTextNode(newtext); 
 			
@@ -127,7 +121,7 @@ window.onload = function (){
 
 		}
 		//if quanity < 1
-		if (order.itemlist[num-1].quantity < 1) {
+		if (order.itemlist["item"+num].quantity < 1) {
 			//indicate div for text details
 			var changediv = document.getElementById("itemdiv" + num); 
 
@@ -141,17 +135,15 @@ window.onload = function (){
 			btndiv.style.display = "none";
 		}
 		recal();
-		
 	}
 
 
-
-	//Function for recalculating Purchase Summary
+	//recalculate Purchase Summary
 	function recal(){
 		var sum = 0;
-		for (i = 0; i<Object.keys(order.itemlist).length; i++){
+		for (var i = 0; i<Object.keys(order.itemlist).length; i++){
 			var num = i + 1; 
-			sum = sum + (order.itemlist[i].price)*(order.itemlist[i].quantity);
+			sum = sum + (order.itemlist["item" + num].price)*(order.itemlist["item" + num].quantity);
 		}
 
 		//inserting item cost
@@ -170,7 +162,7 @@ window.onload = function (){
 		else {
 			ship_amt.textContent = 5; 
 		}
-
+		
 		//inserting total purchase cost
 		var total_amt = document.getElementById("totalamt");
 		var total_amt_val = Number(item_amt.textContent) + Number(tax_amt.textContent)+ Number(ship_amt.textContent);
@@ -179,7 +171,7 @@ window.onload = function (){
 
 
 	//Function for try/catch errors
-	function errcheck (){
+	function errcheck(){
 		if (Object.keys(order).length < 2) throw "Missing order list and customer info";
 		
 		if (!order.customer.name || !order.customer.address) throw "Missing customer constructor info";
@@ -188,8 +180,4 @@ window.onload = function (){
 			if (!order.itemlist[i].description || !order.itemlist[i].price || !order.itemlist[i].quantity) throw "Missing order info";
 		}
 	}
-
 }
-
-
-
