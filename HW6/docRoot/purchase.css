@@ -1,5 +1,21 @@
-/*
-body {
-	margin-top: 20px;
+/* Google Font */
+*{font-family: 'Mukta Vaani', sans-serif;
 }
-*/
+
+/* Style of resume headers */
+h3 {
+    color:#cc860e; /*orange*/
+    font-size: 15pt;
+}
+
+.section {
+    color:#468eb5; /*blue*/
+    font-size: 15pt;
+}
+
+/* Style of Name in nav-bar*/
+#company_name {
+    color:#cc860e; /*orange*/
+    font-size: 20pt;
+}
+

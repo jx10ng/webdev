@@ -1,0 +1,33 @@
+{
+	"itemlist": {
+		"item1":{
+			"description": "Hat", 
+			"price": 200,
+			"quantity": 1
+		},
+		"item2": {
+			"description": "Shoe", 
+			"price": 20,
+			"quantity":1
+		},
+		"item3":{
+			"description": "Pants", 
+			"price": 100,
+			"quantity":1
+		},
+		"item4": {
+			"description": "Shirt", 
+			"price": 10,
+			"quantity":1
+		},
+		"item5": {
+			"description": "Dress", 
+			"price": 100,
+			"quantity":1
+		}
+	},
+	"customer": {
+		"name": "Grey Wilson",
+		"address": "1234 Strawberry Creek, Berkeley, CA 94704"
+	}
+}

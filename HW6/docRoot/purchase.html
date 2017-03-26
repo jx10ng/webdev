@@ -6,12 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    
-    <!--Bootstrap javascript--> 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
     <!--Bootstrap CSS link --> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	
@@ -20,142 +14,201 @@
 	
 	<!--JS file reference -->
 	<script src = "./xmlhttprequest.js"></script>
+
+    <!--Obtain Google font Mukta Vaani -->
+    <link href = "https://fonts.googleapis.com/css?family=Mukta+Vaani" rel="stylesheet" type = "text/css">
+
 	<title>Purchase</title>
 </head>
 <body>
+
 	<!--Navation bar --> 
-	<nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">RIE Clothing</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="#">Products</a></li>
-          <li><a href="#">Account</a></li>
-          <li class="active"><a href="#">Cart</a></li>
-        </ul>
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a id = company_name class="navbar-brand">GotShop</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href = "#" class = "load-content">Products</a></li>
+                <li><a href = "#" class = "load-content">Account</a></li>
+                <li><a href = "#" class = "load-content">Cart</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </div>
 
 
-
-<!-- Containter for Product Details -->
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="panel panel-info">
-				
-				<!-- Product Heading -->
-				<div class="panel-heading">
+	<!-- Container for Product Details -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Panel Panel-Info -->
+				<div class="panel panel-info">
 					
-					<div class="row">
+					<!-- Panel Heading -->
+					<div class="panel-heading">
 						
-						<!-- Shopping Cart and icon -->
-						<div class="col-xs-9">
-							<h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-						</div>
-
-						<!-- Continue Shopping Button --> 
-						<div class="col-xs-3">
-							<!-- Button -->
-							<button type="button" class="btn btn-primary btn-sm btn-block">
-								<!-- Back icon -->
-								<span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-							</button>
-						</div>
-
-					</div>
-					
-				</div>
-
-				<!-- Product Body -->
-				<div class="panel-body">
-					<!--Product1 -->
-					<div class="row">
-						<!-- Image of Product -->
-						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
-						</div>
-
-						<!-- Product Details -->
-						<div class="col-xs-4">
-							<h4 class="product-name"><strong>Product1 name</strong></h4><h4><small>Product description</small></h4>
-						</div>
-						
-						<div class="col-xs-6">
-							<!-- Price -->
-							<div class="col-xs-6 text-right">
-								<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+						<div class="row">
+							
+							<!-- Shopping Cart and icon -->
+							<div class="col-md-9">
+								<h4 class = "section"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
 							</div>
 
-							<!-- Quantity -->
-							<div class="col-xs-4">
-								<input type="text" class="form-control input-sm" value="1">
-							</div>
-
-							<!-- Delete icon -->
-							<div class="col-xs-2">
-								<button type="button" class="btn btn-link btn-xs">
-									<span class="glyphicon glyphicon-trash"> </span>
+							<!-- Continue Shopping Button --> 
+							<div class="col-md-3">
+								<!-- Button -->
+								<button type="button" class="btn btn-primary btn-sm btn-block">
+									<!-- Back icon -->
+									<span class="glyphicon glyphicon-share-alt"></span> Continue shopping
 								</button>
 							</div>
+
 						</div>
+						
 					</div>
 
-					<!--Product2 -->
+					<!-- Panel Body -->
+					<div class="panel-body">
+						<!--Product1 -->
+						<div class="row">
+							<!-- Image of Product -->
+							<div class="col-xs-0 col-md-2"><img class="img-responsive" src="http://placehold.it/100x70">
+							</div>
+
+							<!-- Product Description -->
+							<div class="col-xs-4 col-md-4">
+								<h4 class="product-name"><strong>Product1 name</strong></h4>
+							</div>
+							
+							<!-- Product Pricing, Quantity, Deletion Button -->
+							<div class="col-xs-8 col-md-6">
+								<!-- Price -->
+								<div class="col-xs-6 col-md-6 text-right">
+									<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+								</div>
+
+								<!-- Quantity -->
+								<div class="col-xs-4 col-md-4">
+									<input type="text" class="form-control input-sm" value="1">
+								</div>
+
+								<!-- Delete icon -->
+								<div class="col-xs-2 col-md-2">
+									<button type="button" class="btn btn-link btn-md">
+										<span class="glyphicon glyphicon-trash"> </span>
+									</button>
+								</div>
+							</div>
+						</div>
+					
+						<hr>
+						<!--Product2 -->
+						<div class="row">
+							<!-- Image of Product -->
+							<div class="col-xs-0 col-md-2"><img class="img-responsive" src="http://placehold.it/100x70">
+							</div>
+
+							<!-- Product Details -->
+							<div class="col-xs-4 col-md-4">
+								<h4 class="product-name"><strong>Product2 name</strong></h4>
+							</div>
+							
+							<div class="col-xs-8 col-md-6">
+								<!-- Price -->
+								<div class="col-xs-6 col-md-6 text-right">
+									<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+								</div>
+
+								<!-- Quantity -->
+								<div class="col-xs-4 col-md-4">
+									<input type="text" class="form-control input-sm" value="1">
+								</div>
+
+								<!-- Delete icon -->
+								<div class="col-xs-2 col-md-2">
+									<button type="button" class="btn btn-link btn-md">
+										<span class="glyphicon glyphicon-trash"> </span>
+									</button>
+								</div>
+							</div>
+						</div> <!-- End of Product 2 -->
+					</div> <!-- End of Panel Body -->
+
 					<hr>
-					<div class="row">
-						<!-- Image of Product -->
-						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
-						</div>
 
-						<!-- Product Details -->
-						<div class="col-xs-4">
-							<h4 class="product-name"><strong>Product2 name</strong></h4><h4><small>Product description</small></h4>
-						</div>
-						
-						<div class="col-xs-6">
-							<!-- Price -->
-							<div class="col-xs-6 text-right">
-								<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
-							</div>
+					<!-- Panel Footer -->
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-md-12">
+								<!-- Order Summary -->
+								<div class="col-md-6">
+									<h4 class = "section">Purchase Summary</h4> 
+									<div class = "row">
+										<!-- Items -->
+										<div class="col-xs-6 col-md-6">
+											<p> Items </p>
+											<p> Taxes (10%) </p>
+											<p> Shipping </p>
+											<p> Total Amount </p>
+										</div>
+										<!-- Cost -->
+										<div class="col-xs-6 col-md-6">
+											<p id = "itemsamt"> Item Amount </p>
+											<p id = "taxamt"> Tax Amount </p>
+											<p id = "shipamt"> Ship Amount </p>
+											<p id = "totalamt"> Total Amount </p>
+										</div>
+									</div>
+								</div> <!-- End of Order Summary -->
 
-							<!-- Quantity -->
-							<div class="col-xs-4">
-								<input type="text" class="form-control input-sm" value="1">
-							</div>
+								<!-- Payment Information -->
+								<div class="col-md-6">
+									<h4 class = "section">Payment Information</h4> 
+									<form name = "creditcard" method = "post" action = ""> <!--Need a server-->
+										<div class = "row">
+											<!-- Credit Card Info -->
+											<div class="col-xs-4 col-md-6">
+												<p> Credit Card Number: </p>
+												<p> Expiration Date: </p>
+											</div>
+											<!-- Credit Card Input -->
+											<div class="col-xs-8 col-md-6">
+												<p><input type = "text" id = cdnum></p>
+												<p><input type = "date" id = dateexp></p>
+											</div>
+										</div>
+										<!-- Checkout Button -->
+										<div>
+											<button type="button" id = "btnsubmit" class="btn btn-success btn-block">
+												Confirm Order
+											</button>
+										</div>
+									</form>
+								</div> <!-- End of Payment Info -->
+							</div> <!-- End of col-md-12 -->
+						</div> <!-- End of row -->
+					</div> <!-- End of Panel-Footer -->
+				</div> <!-- End of Panel Panel-Info -->
+			</div> <!-- End of col-md-12 -->
+		</div> <!-- End of Row -->
+	</div> <!-- End of Container -->
 
-							<!-- Delete icon -->
-							<div class="col-xs-2">
-								<button type="button" class="btn btn-link btn-xs">
-									<span class="glyphicon glyphicon-trash"> </span>
-								</button>
-							</div>
-						</div>
-					</div>
-
-				<!-- Total Summary -->
-				<hr>
-				<div class="panel-footer">
-					<div class="row text-center">
-
-						<!-- Total -->
-						<div class="col-xs-9">
-							<h4 class="text-right">Total <strong>$50.00</strong></h4>
-						</div>
-
-						<!-- Checkout Button -->
-						<div class="col-xs-3">
-							<button type="button" class="btn btn-success btn-block">
-								Checkout
-							</button>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-</div>
-
+ 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <!--Bootstrap javascript--> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
