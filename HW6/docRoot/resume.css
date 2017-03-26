@@ -1,73 +1,15 @@
-/*Font for the complete website*/
-{font-family: 'Mukta Vaani', sans-serif;
- margin-top: 10px;
- margin-bottom: 10px;
- margin-right: 10px;
- margin-left: 10px;
+/* Google Font */
+*{font-family: 'Mukta Vaani', sans-serif;
 }
 
-
-/*Screen resolution greater than 400px*/
-@media screen and (min-width: 400px){
-	body {
-		background-color: #cedded; /*light blue*/
-	}
-	.div1 {
-		float:right;
-	}
-	.image1 {
-		width:132px; 
-		height:206px; 
-	}
-	h1 {
-		color: #1b4066; /*dark blue*/
-		font-size: 30pt;
-	}
-	h3 {
-  		font-size: 15pt; 
-  		color:#131d28; /*black*/
-	}
-	h4 {
-  		font-size: 12pt;
-  		color:#4c5c6d; /*grey*/
-	}
-	h5 {
-  		font-size: 12pt;
-  		color:#4c5c6d; /*grey*/
-	}
+/* Style of resume headers */
+h3 {
+    color:#cc860e; /*orange*/
+    font-size: 20pt;
 }
 
-/*Screen resolution smaller than 400px*/
-@media screen and (min-width: 100px) and (max-width: 400px) {
-	body{
-		background-color:#e5f8f9; /*light bluegreen */
-	}
-	.div1 {
-		text-align: center;
-		width: 100%;
-		display:inline-block; /*"display:inline-block" treats div as a text so that "text-align:center may work"
-		/*float:center;*/ 
-		/*Note: "float:center" previously used and provided same result as display:inline-block*/
-	}
-	.image1 {
-		width:132px; 
-		height:206px; 
-	}
-	h1 {
-		color:#0e3f42; /*dark bluegreen*/
-		font-size: 30pt;
-	}
-	h2 {
-  		font-size: 15pt;
-  		color:#131d28; /*black*/  		
-	}
-	h4 {
-  		font-size: 12pt;
-    	color:#4c5c6d; /*grey*/
-	}
-	h5 {
-  		font-size: 12pt
-  		color:#4c5c6d; /*grey*/
-	}
+/* Style of Name in nav-bar*/
+#resume_name {
+    color:#cc860e; /*orange*/
+    font-size: 20pt;
 }
-

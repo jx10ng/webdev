@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				loadContent(pageURL, function() {
 					var pageData = pages[pageURL.split('.')[0]];
 
-					// Create a new history item.
+					// Create a new history item in the url.
 					history.pushState(pageData, pageData.title, pageURL);
+
 				});
 			});
 		}
