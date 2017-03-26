@@ -1,26 +1,25 @@
 "use strict";
 
 //onload, insert all customer and item details into HTML with this function
-window.onload = function (){
-	//retrieving JSON file information
-	function loadJson() {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onload = function() {
-	    	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
-		  		document.getElementById("vieworder").innerHTML = xmlhttp.responseText;
-		    	var order = JSON.parse(xmlhttp.responseText);
-		    	fillOrder(order);
-	    	}
-		}
-		xmlhttp.open("GET", "getOrder.json", true);
-		xmlhttp.send();
+//retrieving JSON file information
+document.addEventListener('DOMContentLoaded', function() {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onload = function() {
+    	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
+	    	var order = JSON.parse(xmlhttp.responseText);
+	    	fillOrder(order);
+    	}
 	}
-
+	xmlhttp.open("GET", "getOrder.json", true);
+	xmlhttp.send();
+});
+/*
 	//button, when clicked will change text to order details
 	var btnvieworder = document.getElementById("btnview");
 	btnvieworder.addEventListener("click", loadJson);
+	
 }
-
+*/
 
 function fillOrder(order){
 //Customer Information and Purchase Details
