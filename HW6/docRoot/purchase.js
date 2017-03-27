@@ -33,15 +33,111 @@ function fillOrder(order){
 	//create Purchase Details with for loop
 	for (var i = 0; i < Object.keys(order.itemlist).length; i++){
 		var num = i + 1;
-		
 
 		//create a new div node for each row of items, className = "row"
-		var newrowdiv = document.createElement("div");
-		newrowdiv.id = "itemdiv" + num;
+		var newrowdiv = document.createElement("div"); 
+		newrowdiv.id = "itemrowdiv" + num;
 		newrowdiv.className = "row";
 
+			//create a new div node with class="col-xs-0 col-md-2 for image
+			var newimagediv = document.createElement("div");
+			newimagediv.id = "itemimagediv" + num;
+			newimagediv.className = "col-xs-0 col-md-2";
+			//create new img element for images
+			var newimage = document.createElement("img");
+			newimage.className = "img-responsive";
+			newimage.src = "http\:\/\/placehold.it\/100x70";
+			//append image (newimage) node to image div(newimagediv)
+			newimagediv.appendChild(newimage);
+			//append image div (newimagediv) node to row div(newrowdiv)
+			newrowdiv.appendChild(newimagediv);
 
 
+			//create new div node with class="col-xs-4 col-md-4" for product name
+			var newproductdiv = document.createElement("div");
+			newproductdiv.id = "itemproductdiv" + num;
+			newproductdiv.className = "col-xs-4 col-md-4";
+			//create a p element for product name
+			var newproductelement = document.createElement("p");
+			newproductelement.id = "product_name" + num;
+			newproductelement.className = "text";
+			//create text for product 
+			var newproductname = order.itemlist["item"+ num].description + "";
+
+			//create a textnode for the product text
+			var newproducttext = document.createTextNode(newproductname);
+			//append textnode (newproducttext) to div node (newproductelement)
+			newproductelement.appendChild(newproducttext);
+			//append p element (newproductname) to product name div (newproductdiv)
+			newproductdiv.appendChild(newproductelement);
+			//append product name div (newproductdiv) node to row div(newrowdiv)
+			newrowdiv.appendChild(newproductdiv);
+
+
+			//create new div node with class="col-xs-8 col-md-6" for price, quantity, delete button
+			var newcostdiv = document.createElement("div");
+			newcostdiv.id = "itemcostdiv" + num;
+			newcostdiv.className = "col-xs-8 col-md-6";
+				//create new div node with class="col-xs-6 col-md-6 text-right" for price
+				var newpricediv = document.createElement("div");
+				newpricediv.id = "itempricediv" + num;
+				newpricediv.className = "col-xs-6 col-md-6 text-right";
+				//create a p element for price
+				var newpriceelement = document.createElement("p");
+				newpriceelement.id = "price" + num;
+				//create text for price
+				var newprice = order.itemlist["item" + num].price + " x ";
+				//create a textnode for the price text
+				var newpriceelement = document.createTextNode(newprice);
+				//append textnode (newpriceelement) to div node (newpricediv)
+				newpricediv.appendChild(newpriceelement);
+				//append div element (newpricediv) to main cost div (newcostdiv)
+				newcostdiv.appendChild(newpricediv);
+				
+
+				//create new div node with class="col-xs-4 col-md-4" for quantity
+				var newquantitydiv = document.createElement("div");
+				newquantitydiv.id = "itemquantitydiv" + num;
+				newquantitydiv.className = "col-xs-4 col-md-4";
+				//create an input element for quantity
+				var newquantity = document.createElement("input");
+				newquantity.id = "quantity" + num;
+				newquantity.className = "form-control input-sm";
+				//create text for quantity
+				newquantity.value = order.itemlist["item"+num].quantity;
+				//append input element (newquantity) to quantity div (newquantitydiv)
+				newquantitydiv.appendChild(newquantity);
+				//append div element (newquantitydiv) to main cost div (newcostdiv)
+				newcostdiv.appendChild(newquantitydiv);
+
+
+				//create new div node with class="col-xs-2 col-md-2" for delete
+				var newdeletediv = document.createElement("div");
+				newdeletediv.id = "itemquantitydiv" + num;
+				newdeletediv.className = "col-xs-2 col-md-2";
+				//create button element for delete
+				var newdelete = document.createElement("button");
+				newdelete.type = "button";
+				newdelete.id = "btndelete" + num;
+				newdelete.className = "btn btn-link btn-md";
+				newdelete.index = num;
+				//create span element for delete button
+				var newdeletespan = document.createElement("span");
+				newdeletespan.className = "glyphicon glyphicon-trash";
+				newdelete.appendChild(newdeletespan);
+				//append input element (newdelete) to delete div (newdeletediv)
+				newdeletediv.appendChild(newdelete);
+				//append div element (newdeletediv) to main cost div (newcostdiv)
+				newcostdiv.appendChild(newdeletediv);
+				//event listenr for clicking of the delete icon
+				newdeletespan.addEventListener('click', fDelete);
+
+		//append main cost div (newcostdiv) node to main row div(newrowdiv)
+		newrowdiv.appendChild(newcostdiv);
+		//append main row div(newrowdiv) to the panel panel div
+		document.getElementById("panelbodydiv").appendChild(newrowdiv);
+		//create hr element and append to the panel panel div
+		document.getElementById("panelbodydiv").appendChild(document.createElement("hr"));
 
 
 
@@ -83,20 +179,6 @@ function fillOrder(order){
 		
 		//append div node (with input button) to Purchase Details div node
 		list.appendChild(newinputdiv);
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	}
 	recal(); //calculate the Purchase Summary

@@ -19,3 +19,9 @@ h3 {
     font-size: 20pt;
 }
 
+/* Style of text for product name */
+.text {
+	color:#cc860e;
+	font-size: 15pt; /*not working here downwards*/
+	font-weight: bold;
+}
