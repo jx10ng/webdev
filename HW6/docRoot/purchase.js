@@ -116,21 +116,22 @@ function fillOrder(order){
 				newdeletediv.id = "itemquantitydiv" + num;
 				newdeletediv.className = "col-xs-2 col-md-2";
 				//create button element for delete
-				var newdelete = document.createElement("button");
+				var newdelete = document.createElement("input");
 				newdelete.type = "button";
 				newdelete.id = "btndelete" + num;
-				newdelete.className = "btn btn-link btn-md";
+				newdelete.value = "Detele";
+				/*newdelete.className = "btn btn-link btn-md";*/ //note: span removed to allow for fDelete to work
 				newdelete.index = num;
 				//create span element for delete button
-				var newdeletespan = document.createElement("span");
-				newdeletespan.className = "glyphicon glyphicon-trash";
-				newdelete.appendChild(newdeletespan);
+				/*var newdeletespan = document.createElement("span");*/
+				/*newdeletespan.className = "glyphicon glyphicon-trash";*/
+				/*newdelete.appendChild(newdeletespan);*/
 				//append input element (newdelete) to delete div (newdeletediv)
 				newdeletediv.appendChild(newdelete);
 				//append div element (newdeletediv) to main cost div (newcostdiv)
 				newcostdiv.appendChild(newdeletediv);
-				//event listenr for clicking of the delete icon
-				newdeletespan.addEventListener('click', fDelete);
+				//event listenr for clicking of the delete button
+				newdelete.addEventListener('click', fDelete);
 
 		//append main cost div (newcostdiv) node to main row div(newrowdiv)
 		newrowdiv.appendChild(newcostdiv);
@@ -189,7 +190,7 @@ function fillOrder(order){
 		num = e.target.index; // index of the element that triggered the event
 		//if quantity > 1
 		//remove one quantity from item in itemlist object
-		//alert("num: " + num); 
+		alert("my num: " + num); //for testing purposes
 		if (order.itemlist["item" + num].quantity > 0) {
 			//delete 1 quantity
 			order.itemlist["item" + num].quantity -= 1
