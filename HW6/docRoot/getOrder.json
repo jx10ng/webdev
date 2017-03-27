@@ -2,28 +2,28 @@
 	"itemlist": {
 		"item1":{
 			"description": "Hat", 
-			"price": 200,
+			"price": 20.50,
 			"quantity": 1
 		},
 		"item2": {
 			"description": "Shoe", 
-			"price": 20,
+			"price": 20.20,
 			"quantity":1
 		},
 		"item3":{
 			"description": "Pants", 
-			"price": 100,
-			"quantity":1
+			"price": 100.00,
+			"quantity":2
 		},
 		"item4": {
 			"description": "Shirt", 
-			"price": 10,
-			"quantity":1
+			"price": 10.00,
+			"quantity":3
 		},
 		"item5": {
 			"description": "Dress", 
-			"price": 100,
-			"quantity":1
+			"price": 100.00,
+			"quantity":2
 		}
 	},
 	"customer": {

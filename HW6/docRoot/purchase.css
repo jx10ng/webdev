@@ -21,7 +21,13 @@ h3 {
 
 /* Style of text for product name */
 .text {
-	color:#cc860e;
-	font-size: 15pt; /*not working here downwards*/
+	color:#cc860e; /*orange*/
+	font-size: 15pt; 
+}
+
+.delete_text{
+	color: #b20c0c; /*red*/
+	font-size: 10pt;
 	font-weight: bold;
+	/*border-radius: 2pt;*/
 }
