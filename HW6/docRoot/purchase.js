@@ -13,15 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	xmlhttp.open("GET", "getOrder.json", true);
 	xmlhttp.send();
 });
-/*
-	//button, when clicked will change text to order details
-	var btnvieworder = document.getElementById("btnview");
-	btnvieworder.addEventListener("click", loadJson);
-	
-}
-*/
+
 
 function fillOrder(order){
+/*
 //Customer Information and Purchase Details
 	//insert customer name
 	var customer_name = document.getElementById("custname");
@@ -30,6 +25,7 @@ function fillOrder(order){
 	//insert customer address
 	var customer_add = document.getElementById("custadd");
 	customer_add.textContent = order.customer.address;
+*/
 
 	//identify div that will store purchase details
 	var list = document.getElementById("mydiv");
@@ -38,6 +34,18 @@ function fillOrder(order){
 	for (var i = 0; i < Object.keys(order.itemlist).length; i++){
 		var num = i + 1;
 		
+
+		//create a new div node for each row of items, className = "row"
+		var newrowdiv = document.createElement("div");
+		newrowdiv.id = "itemdiv" + num;
+		newrowdiv.className = "row";
+
+
+
+
+
+
+
 		//create a new div node for items details
 		var newitemdiv = document.createElement("div");
 		newitemdiv.id = "itemdiv" + num;
@@ -75,6 +83,21 @@ function fillOrder(order){
 		
 		//append div node (with input button) to Purchase Details div node
 		list.appendChild(newinputdiv);
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 	recal(); //calculate the Purchase Summary
 
