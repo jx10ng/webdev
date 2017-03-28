@@ -1,41 +1,147 @@
 "use strict";
 
-//onload, insert all customer and item details into HTML with this function
+//on load of DOM, insert all customer and item details into HTML with this function
 //retrieving JSON file information
 document.addEventListener('DOMContentLoaded', function() {
+	var order;
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onload = function() {
     	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
-	    	var order = JSON.parse(xmlhttp.responseText);
+	    	order = JSON.parse(xmlhttp.responseText);
 	    	fillOrder(order);
     	}
 	}
 	xmlhttp.open("GET", "getOrder.json", true);
 	xmlhttp.send();
-});
 
+	// AJAX NAVIGATION
+	try {
+		//AJAX Nav - Step 1: create pages object to store information
+ 		var pages = {
+			products: {title: "Products", content: ""},
+			account: {title: "Account", content: ""},
+			cart: {title: "Cart", content: ""},
+			aboutus: {title: "About Us", content: ""},
+			contact: {title: "Contact", content: ""},
+			references: {title: "References", content: ""}
+		}
+		//AJAX Nav - Step 2: identify each navigation point from html
+		// Get references to the page element <a>: class = "load-content".
+		var navLinks = document.querySelectorAll('.load-content');
 
-function fillOrder(order){
-/*
-//Customer Information and Purchase Details
-	//insert customer name
-	var customer_name = document.getElementById("custname");
-	customer_name.textContent = order.customer.name;
-	
-	//insert customer address
-	var customer_add = document.getElementById("custadd");
-	customer_add.textContent = order.customer.address;
+		//AJAX Nav - Step 3: identify where new content will be loaded
+		// Get references to the page element <div>: id = "content" 
+		var contentElement = document.getElementById('content');
+
+		// Attach click event listeners for each of the navigation point: Summary, Content, and Reference 
+		for (var i = 0; i < navLinks.length; i++) {
+			//AJAX Nav - Step 4: create event listener for each navigation point
+			navLinks[i].addEventListener('click', function(e) {
+				e.preventDefault();
+
+				//AJAX Nav - Step 5: get the url from the <a href> of the html page
+				//Fetch the page data using the URL in the link. 
+				//pageURL example are contact.html, product.html, account.html, cart.html, etc.
+				var pageURL = this.attributes['href'].value;
+				//alert("pageURL: " + pageURL);
+
+				//AJAX Nav - Step 6: use the url from <a href> of the html page for function loadContent 
+				loadContent(pageURL, function() {
+					
+					//AJAX Nav - Step 14: perform callback function, identify state object variable for page object's object (example: page[contact], page[product], page[account], page[cart], etc)
+					//same as Step 9
+					var pageData = pages[pageURL.split('.')[0]];
+					//alert("pageURL.split('.')[0]: " + pageURL.split('.')[0]);
+
+					//AJAX Nav - Step 15: Create a new history item in the url with state object, title, url of selected navLink[i]
+					history.pushState(pageData, pageData.title, pageURL);
+				});
+			});
+		} // End of for loop
+			
+/*		//event handler for clicking the cart page (navLinks[2] == cart element id) and generating purchase order display
+		navLinks[2].addEventListener('click', function(e) {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onload = function() {
+		    	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
+			    	var order = JSON.parse(xmlhttp.responseText);
+			    	fillOrder(order);
+		    	}
+			}
+			xmlhttp.open("GET", "getOrder.json", true);
+			xmlhttp.send();
+		});
 */
+
+		//update the page content when the popstate event is called while doing forward or backward in history.
+		//popstate event is dispatched to the window every time the active history entry changes between two history entries for the same document.
+		//the event is only triggered when the user navigates between two history entries for the same document.
+		window.addEventListener('popstate', function(event) {
+			updateContent(event.state);
+		});
+
+
+		// Function to load the page content via AJAX xmlhttprequest
+		function loadContent(url, callback) {
+			//AJAX Nav - Step 7:  perform xmlhttprequest
+			var pagerequest = new XMLHttpRequest();
+			//When request is finished loading, load html content.
+			pagerequest.addEventListener('load', function() {
+				//AJAX Nav - Step 8: Save the html content from the xmlhttprequest to the page's object content to reduce reloading.
+				//url.split('.')[0] examples: contact, product, account, cart, etc.
+				//pages[url.split('.')[0]].content is pages object > object (example: contact, product, account, cart, etc) > content object
+
+				pages[url.split('.')[0]].content = pagerequest.response;
+
+				//AJAX Nav - Step 9: assign variable to page object's object (example: page[contact], page[product], page[account], page[cart], etc)
+				var pageData = pages[url.split('.')[0]];
+
+				//AJAX Nav - Step 10: Update the title and content with the function updateContent.
+				updateContent(pageData);
+
+				//AJAX Nav - Step 13: 1Execute the callback function.
+				callback();
+			});
+
+			//Open the request from file and send it asynchronously ("true" value" in third argument).
+			pagerequest.open('get', 'pages/' + url, true);
+			pagerequest.send();
+		};
+
+
+		// Function to update the main html page with the page object's object content.
+		function updateContent(pageObjectObject) {
+			//AJAX Nav - Step 11: Check to make sure that this pageObjectObject is not null.
+
+			if (pageObjectObject) {
+				//AJAX Nav - Step 12: Assign <div> element on main html page to the page object's object content
+				contentElement.innerHTML = pageObjectObject.content;
+
+			}
+			//if page object's object is null (aka state object), then throw an error
+			else { 
+				throw "State Object is null."
+			}
+		};
+	} // End of try
+
+	// Execute catch for errors.
+	catch(err){ //JavaScript error.
+		alert('Catch: ' + err);
+	}
+
+}); // End of 'DOMContentLoaded' event listener
+
+
+// PURCHASE ORDER GENERATION
+function fillOrder(order){
 	//call function to display purchase items
 	displayOrder(order);
 	//call function to calculate the purchase summary
 	recal(order); 
 
-
+	// Function to display the purchase order
 	function displayOrder(order){
-		//identify div that will store purchase details
-		var list = document.getElementById("mydiv");
-		
 		//create Purchase Details with for loop
 		for (var i = 0; i < Object.keys(order.itemlist).length; i++){
 			var num = i + 1;
@@ -152,6 +258,7 @@ function fillOrder(order){
 	} // End of Function displayOrder()
 
 
+
 	// Function to delete items from Purchase Details
 	function fDelete(e){ //e is for event
 		var num = e.target.index; // index of the element that triggered the event
@@ -189,6 +296,7 @@ function fillOrder(order){
 	} // End of Function fDelete()
 
 
+
 	// Function to recalculate Purchase Summary
 	function recal(order){
 		var sum = 0;
@@ -217,11 +325,11 @@ function fillOrder(order){
 			var ship_cost = 5;
 			ship_amt.textContent = "$" + ship_cost; 
 		}
-		
+	
 		//inserting total purchase cost
 		var total_amt = document.getElementById("totalamt");
 		var total_amt_val = Number(item_cost) + Number(tax_cost)+ Number(ship_cost);
 		total_amt.textContent = "$" + total_amt_val;
 	} // End of Function recal()
 
-}
+} // End of Function fillOrder()

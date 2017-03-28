@@ -25,9 +25,9 @@ h3 {
 	font-size: 15pt; 
 }
 
+/* Style for text of delete button */
 .delete_text{
 	color: #b20c0c; /*red*/
 	font-size: 10pt;
 	font-weight: bold;
-	/*border-radius: 2pt;*/
 }

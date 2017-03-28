@@ -1,0 +1,92 @@
+<!-- Container for Product Details -->
+<div id = "mydiv" class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Panel Panel-Info -->
+			<div class="panel panel-info">
+				
+				<!-- Panel Heading -->
+				<div class="panel-heading">
+					
+					<div class="row">
+						
+						<!-- Shopping Cart and icon -->
+						<div class = "col-xs-6 col-sm-9 col-md-9">
+							<h4 class = "section"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+						</div>
+
+						<!-- Continue Shopping Button --> 
+						<div class = "col-xs-6 col-sm-3 col-md-3">
+							<!-- Button -->
+							<button type="button" class="btn btn-primary btn-sm btn-block">
+								<!-- Back icon -->
+								<span class="glyphicon glyphicon-share-alt"></span> Continue Shopping
+							</button>
+						</div>
+
+					</div>
+					
+				</div>
+
+				<!-- Panel Body -->
+				<div class="panel-body" id = "panelbodydiv">
+
+				</div> <!-- End of Panel Body -->
+
+
+				<!-- Panel Footer -->
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- Order Summary -->
+							<div class="col-sm-6 col-md-6">
+								<h4 class = "section">Purchase Summary</h4> 
+								<div class = "row">
+									<!-- Items -->
+									<div class = "col-xs-6 col-sm-6 col-md-6">
+										<p> Items: </p>
+										<p> Taxes (10%): </p>
+										<p> Shipping: </p>
+										<p> Total Amount: </p>
+									</div>
+									<!-- Cost -->
+									<div class = "col-xs-6 col-sm-6 col-md-6">
+										<p id = "itemsamt"> Item Amount </p>
+										<p id = "taxamt"> Tax Amount </p>
+										<p id = "shipamt"> Ship Amount </p>
+										<p id = "totalamt"> Total Amount </p>
+									</div>
+								</div>
+							</div> <!-- End of Order Summary -->
+
+							<!-- Payment Information -->
+							<div class="col-sm-6 col-md-6">
+								<h4 class = "section">Payment Information</h4> 
+								<form name = "creditcard" method = "post" action = ""> <!--Need a server-->
+									<div class = "row">
+										<!-- Credit Card Info -->
+										<div class="col-xs-6 col-md-6">
+											<p> Credit Card Number: </p>
+											<p> Expiration Date: </p>
+										</div>
+										<!-- Credit Card Input -->
+										<div class="col-xs-6 col-md-6 ">
+											<p><input type = "text" id = cdnum class = "form-control" ></p>
+											<p><input type = "date" id = dateexp class = "form-control" ></p>
+										</div>
+									</div>
+									<!-- Checkout Button -->
+									<div>
+										<button type="button" id = "btnsubmit" class="btn btn-success btn-block">
+											Confirm Order
+										</button>
+									</div>
+								</form>
+							</div> <!-- End of Payment Info -->
+						</div> <!-- End of col-md-12 -->
+					</div> <!-- End of row -->
+				</div> <!-- End of Panel-Footer -->
+			</div> <!-- End of Panel Panel-Info -->
+		</div> <!-- End of col-md-12 -->
+	</div> <!-- End of Row -->
+</div> <!-- End of Container -->
