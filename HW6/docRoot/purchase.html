@@ -38,12 +38,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href = "products.html" class = "load-content">Products</a></li>
-                <li><a href = "account.html" class = "load-content">Account</a></li>
-                <li><a href = "cart.html" class = "load-content">Cart</a></li>
-                <li><a href = "aboutus.html" class = "load-content">About Us</a></li>
-                <li><a href = "contact.html" class = "load-content">Contact</a></li>
-                <li><a href = "references.html" class = "load-content">References</a></li>
+                <li><a href = "products.html" class = "load-content" id = "products">Products</a></li>
+                <li><a href = "account.html" class = "load-content" id = "account">Account</a></li>
+                <li><a href = "cart.html" class = "load-content" id = "cart">Cart</a></li>
+                <li><a href = "aboutus.html" class = "load-content" id = "aboutus">About Us</a></li>
+                <li><a href = "contact.html" class = "load-content" id = "contact">Contact</a></li>
+                <li><a href = "references.html" class = "load-content" id = "references">References</a></li>
               </ul>
             </div>
           </div>
@@ -53,98 +53,111 @@
 	
 	<!-- Main Content Page -->
 	<div id = "content">
-		<!-- Container for Product Details -->
-		<div id = "mydiv" class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<!-- Panel Panel-Info -->
-					<div class="panel panel-info">
-						
-						<!-- Panel Heading -->
-						<div class="panel-heading">
-							
-							<div class="row">
-								
-								<!-- Shopping Cart and icon -->
-								<div class = "col-xs-6 col-sm-9 col-md-9">
-									<h4 class = "section"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-								</div>
-
-								<!-- Continue Shopping Button --> 
-								<div class = "col-xs-6 col-sm-3 col-md-3">
-									<!-- Button -->
-									<button type="button" class="btn btn-primary btn-sm btn-block">
-										<!-- Back icon -->
-										<span class="glyphicon glyphicon-share-alt"></span> Continue Shopping
-									</button>
-								</div>
-
-							</div>
-							
-						</div>
-
-						<!-- Panel Body -->
-						<div class="panel-body" id = "panelbodydiv">
-
-						</div> <!-- End of Panel Body -->
-
-
-						<!-- Panel Footer -->
-						<div class="panel-footer">
-							<div class="row">
-								<div class="col-md-12">
-									<!-- Order Summary -->
-									<div class="col-sm-6 col-md-6">
-										<h4 class = "section">Purchase Summary</h4> 
-										<div class = "row">
-											<!-- Items -->
-											<div class = "col-xs-6 col-sm-6 col-md-6">
-												<p> Items: </p>
-												<p> Taxes (10%): </p>
-												<p> Shipping: </p>
-												<p> Total Amount: </p>
-											</div>
-											<!-- Cost -->
-											<div class = "col-xs-6 col-sm-6 col-md-6">
-												<p id = "itemsamt"> Item Amount </p>
-												<p id = "taxamt"> Tax Amount </p>
-												<p id = "shipamt"> Ship Amount </p>
-												<p id = "totalamt"> Total Amount </p>
-											</div>
-										</div>
-									</div> <!-- End of Order Summary -->
-
-									<!-- Payment Information -->
-									<div class="col-sm-6 col-md-6">
-										<h4 class = "section">Payment Information</h4> 
-										<form name = "creditcard" method = "post" action = ""> <!--Need a server-->
-											<div class = "row">
-												<!-- Credit Card Info -->
-												<div class="col-xs-6 col-md-6">
-													<p> Credit Card Number: </p>
-													<p> Expiration Date: </p>
-												</div>
-												<!-- Credit Card Input -->
-												<div class="col-xs-6 col-md-6 ">
-													<p><input type = "text" id = cdnum class = "form-control" ></p>
-													<p><input type = "date" id = dateexp class = "form-control" ></p>
-												</div>
-											</div>
-											<!-- Checkout Button -->
-											<div>
-												<button type="button" id = "btnsubmit" class="btn btn-success btn-block">
-													Confirm Order
-												</button>
-											</div>
-										</form>
-									</div> <!-- End of Payment Info -->
-								</div> <!-- End of col-md-12 -->
-							</div> <!-- End of row -->
-						</div> <!-- End of Panel-Footer -->
-					</div> <!-- End of Panel Panel-Info -->
-				</div> <!-- End of col-md-12 -->
-			</div> <!-- End of Row -->
-		</div> <!-- End of Container -->
+		<div class="container">
+		<h4>NEW COLLECTION</h4>
+	<div class="row">
+	
+    	<!-- BEGIN PRODUCTS -->
+  		<div class="col-md-3 col-sm-6">
+    		<span class="thumbnail">
+      			<img src="https://www.rei.com/media/fbee740d-f640-4449-896b-f9747c5d5da2" alt="...">
+      			<h4>Shirt</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<p class="price">$29.99</p>
+      				</div>
+      				<div class="col-md-6 col-sm-6 text-right">
+      					<button class="btn btn-info right" > BUY</button>
+      				</div>
+      				
+      			</div>
+    		</span>
+  		</div>
+  		<div class="col-md-3 col-sm-6">
+    		<span class="thumbnail">
+      			<img src="https://www.rei.com/media/ddd553ee-8d83-4f66-9d03-6f23883575cf" alt="...">
+      			<h4>Leather Sandals</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<p class="price">$46.50</p>
+      				</div>
+      				<div class="col-md-6 col-sm-6 text-right">
+      					<button class="btn btn-info right" > BUY</button>
+      				</div>
+      				
+      			</div>
+    		</span>
+  		</div>
+  		<div class="col-md-3 col-sm-6">
+    		<span class="thumbnail">
+      			<img src="https://www.rei.com/media/95b633c6-0b8a-476c-a37b-8d7a2c36d40c" alt="...">
+      			<h4>Sun Hat</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<p class="price">$19.99</p>
+      				</div>
+      				<div class="col-md-6 col-sm-6 text-right">
+      					<button class="btn btn-info right" > BUY</button>
+      				</div>
+      				
+      			</div>
+    		</span>
+  		</div>
+  		<div class="col-md-3 col-sm-6">
+    		<span class="thumbnail">
+      			<img src="https://www.rei.com/media/c2d232bb-a09d-4f93-bc53-fa28500ea817" alt="...">
+      			<h4>Down Jacket</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    
+                </div>
+      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<p class="price">$69.90</p>
+      				</div>
+      				<div class="col-md-6 col-sm-6 text-right">
+      					<button class="btn btn-info right" > BUY</button>
+      				</div>
+      				
+      			</div>
+    		</span>
+  		</div>
+		<!-- END PRODUCTS -->
+	</div>
+</div><!-------container----->
 	</div>
  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

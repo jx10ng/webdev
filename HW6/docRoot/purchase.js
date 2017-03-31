@@ -1,21 +1,10 @@
 "use strict";
-
 //on load of DOM, insert all customer and item details into HTML with this function
 //retrieving JSON file information
 document.addEventListener('DOMContentLoaded', function() {
-	var order;
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-    	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
-	    	order = JSON.parse(xmlhttp.responseText);
-	    	fillOrder(order);
-    	}
-	}
-	xmlhttp.open("GET", "getOrder.json", true);
-	xmlhttp.send();
-
-	// AJAX NAVIGATION
 	try {
+// AJAX NAVIGATION
+	
 		//AJAX Nav - Step 1: create pages object to store information
  		var pages = {
 			products: {title: "Products", content: ""},
@@ -25,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			contact: {title: "Contact", content: ""},
 			references: {title: "References", content: ""}
 		}
+
 		//AJAX Nav - Step 2: identify each navigation point from html
 		// Get references to the page element <a>: class = "load-content".
 		var navLinks = document.querySelectorAll('.load-content');
@@ -33,45 +23,95 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Get references to the page element <div>: id = "content" 
 		var contentElement = document.getElementById('content');
 
-		// Attach click event listeners for each of the navigation point: Summary, Content, and Reference 
-		for (var i = 0; i < navLinks.length; i++) {
-			//AJAX Nav - Step 4: create event listener for each navigation point
-			navLinks[i].addEventListener('click', function(e) {
-				e.preventDefault();
+		var order;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onload = function() {
+	    	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
+		    	order = JSON.parse(xmlhttp.responseText);
+		    	/*fillOrder(order);*/
+	    	
+				//AJAX Nav - Step 4: create event listener for each navigation point
+	    		$(document).ready(function(){
+	    			// event handler for product, about us, contact, and references pages
+	    			$("#products, #aboutus, #contact, #references").click(function(event){
+	        			event.preventDefault();
+	        			//AJAX Nav - Step 5: get the url from the <a href> of the html page
+						//Fetch the page data using the URL in the link. 
+						//pageURL example are contact.html, product.html, account.html, cart.html, etc.
+						var pageURL = this.attributes['href'].value;
+						//alert("pageURL: " + pageURL);
 
-				//AJAX Nav - Step 5: get the url from the <a href> of the html page
-				//Fetch the page data using the URL in the link. 
-				//pageURL example are contact.html, product.html, account.html, cart.html, etc.
-				var pageURL = this.attributes['href'].value;
-				//alert("pageURL: " + pageURL);
+						//AJAX Nav - Step 6: use the url from <a href> of the html page for function loadContent 
+						loadContent(pageURL, function() {
+							
+							//AJAX Nav - Step 14: perform callback function, identify state object variable for page object's object (example: page[contact], page[product], page[account], page[cart], etc)
+							//same as Step 9
+							var pageData = pages[pageURL.split('.')[0]];
+							//alert("pageURL.split('.')[0]: " + pageURL.split('.')[0]);
 
-				//AJAX Nav - Step 6: use the url from <a href> of the html page for function loadContent 
-				loadContent(pageURL, function() {
-					
-					//AJAX Nav - Step 14: perform callback function, identify state object variable for page object's object (example: page[contact], page[product], page[account], page[cart], etc)
-					//same as Step 9
-					var pageData = pages[pageURL.split('.')[0]];
-					//alert("pageURL.split('.')[0]: " + pageURL.split('.')[0]);
+							//AJAX Nav - Step 15: Create a new history item in the url with state object, title, url of selected navLink[i]
+							history.pushState(pageData, pageData.title, pageURL);
+						});
+	    			});
 
-					//AJAX Nav - Step 15: Create a new history item in the url with state object, title, url of selected navLink[i]
-					history.pushState(pageData, pageData.title, pageURL);
-				});
-			});
-		} // End of for loop
-			
-/*		//event handler for clicking the cart page (navLinks[2] == cart element id) and generating purchase order display
-		navLinks[2].addEventListener('click', function(e) {
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onload = function() {
-		    	if (xmlhttp.status == 200) { //this.readyState == 4 not used with onload handler
-			    	var order = JSON.parse(xmlhttp.responseText);
-			    	fillOrder(order);
-		    	}
-			}
-			xmlhttp.open("GET", "getOrder.json", true);
-			xmlhttp.send();
-		});
-*/
+	    			// event handler for cart page
+					$("#cart").click(function(event){
+	        			event.preventDefault();
+	        			//AJAX Nav - Step 5: get the url from the <a href> of the html page
+						//Fetch the page data using the URL in the link. 
+						//pageURL example are contact.html, product.html, account.html, cart.html, etc.
+						var pageURL = this.attributes['href'].value;
+						//alert("pageURL: " + pageURL);
+
+						//AJAX Nav - Step 6: use the url from <a href> of the html page for function loadContent 
+						loadContent(pageURL, function() {
+							
+							//AJAX Nav - Step 14: perform callback function, identify state object variable for page object's object (example: page[contact], page[product], page[account], page[cart], etc)
+							//same as Step 9
+							var pageData = pages[pageURL.split('.')[0]];
+							//alert("pageURL.split('.')[0]: " + pageURL.split('.')[0]);
+
+							//AJAX Nav - Step 15: Create a new history item in the url with state object, title, url of selected navLink[i]
+							history.pushState(pageData, pageData.title, pageURL);
+						
+							// generate order
+							fillOrder(order) //need a call back function to make this happen last
+						});
+						
+	    			});
+
+					// event handler for account page
+					$("#account").click(function(event){
+	        			event.preventDefault();
+	        			//AJAX Nav - Step 5: get the url from the <a href> of the html page
+						//Fetch the page data using the URL in the link. 
+						//pageURL example are contact.html, product.html, account.html, cart.html, etc.
+						var pageURL = this.attributes['href'].value;
+						//alert("pageURL: " + pageURL);
+
+						//AJAX Nav - Step 6: use the url from <a href> of the html page for function loadContent 
+						loadContent(pageURL, function() {
+							
+							//AJAX Nav - Step 14: perform callback function, identify state object variable for page object's object (example: page[contact], page[product], page[account], page[cart], etc)
+							//same as Step 9
+							var pageData = pages[pageURL.split('.')[0]];
+							//alert("pageURL.split('.')[0]: " + pageURL.split('.')[0]);
+
+							//AJAX Nav - Step 15: Create a new history item in the url with state object, title, url of selected navLink[i]
+							history.pushState(pageData, pageData.title, pageURL);
+
+							// generate customer information
+							fillCustomerInfo(order) //need a call back function to make this happen last
+
+						});
+	    			});
+				}); // End of event listeners
+	    	}
+		} // End of xmlhttp onload
+
+		xmlhttp.open("GET", "getOrder.json", true);
+		xmlhttp.send();
+
 
 		//update the page content when the popstate event is called while doing forward or backward in history.
 		//popstate event is dispatched to the window every time the active history entry changes between two history entries for the same document.
@@ -131,6 +171,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 }); // End of 'DOMContentLoaded' event listener
+
+// CUSTOMER INFORMATION GENERATION	
+
+function fillCustomerInfo(order){
+	//alert("order: " + order); //object
+	//var customer_name = order.customer.name;
+	//var customer_address = order.customer.address;
+
+	document.getElementById("name_input").value = order.customer.name;
+	document.getElementById("shipping_input").value = order.customer.address;
+
+}
 
 
 // PURCHASE ORDER GENERATION
@@ -225,7 +277,7 @@ function fillOrder(order){
 
 					//create new div node with class="col-xs-2 col-md-2" for delete
 					var newdeletediv = document.createElement("div");
-					newdeletediv.id = "itemquantitydiv" + num;
+					newdeletediv.id = "itemdeletediv" + num;
 					newdeletediv.className = "col-xs-2 col-sm-2 col-md-2";
 					//create button element for delete
 					var newdelete = document.createElement("input");
@@ -249,7 +301,10 @@ function fillOrder(order){
 			//append main cost div (newcostdiv) node to main row div(newrowdiv)
 			newrowdiv.appendChild(newcostdiv);
 			//append main row div(newrowdiv) to the panel panel div
+
+			//alert("panelbodydiv: " + document.getElementById("panelbodydiv"));
 			document.getElementById("panelbodydiv").appendChild(newrowdiv);
+
 			//create hr element and append to the panel panel div
 			var newhr = document.createElement("hr");
 			newhr.id = "hr" + num;
@@ -264,7 +319,8 @@ function fillOrder(order){
 		var num = e.target.index; // index of the element that triggered the event
 		//if quantity > 1
 		//remove one quantity from item in itemlist object
-		//alert("my num: " + num); //for testing purposes
+		alert(" e.target: " +  e.target); //for testing purposes
+		alert("my num: " + num); //for testing purposes
 
 		if (order.itemlist["item" + num].quantity > 0) {
 			//delete 1 quantity
