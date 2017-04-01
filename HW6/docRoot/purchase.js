@@ -246,13 +246,13 @@ function fillOrder(order){
 					var newpricediv = document.createElement("div");
 					newpricediv.id = "itempricediv" + num;
 					newpricediv.className = "col-xs-6 col-sm-6 col-md-6 text-right";
-					//create a p element for price
-					var newpriceelement = document.createElement("p");
-					newpriceelement.id = "price" + num;
-					//create text for price
-					var newprice = "$" + order.itemlist["item" + num].price + " x ";
-					//create a textnode for the price text
-					var newpriceelement = document.createTextNode(newprice);
+						//create a p element for price
+						var newpriceelement = document.createElement("p");
+						newpriceelement.id = "price" + num;
+							//create text for price
+							var newprice = "$" + order.itemlist["item" + num].price + " x ";
+							//create a textnode for the price text
+							var newpriceelement = document.createTextNode(newprice);
 					//append textnode (newpriceelement) to div node (newpricediv)
 					newpricediv.appendChild(newpriceelement);
 					//append div element (newpricediv) to main cost div (newcostdiv)
@@ -264,11 +264,11 @@ function fillOrder(order){
 					newquantitydiv.id = "itemquantitydiv" + num;
 					newquantitydiv.className = "col-xs-4 col-sm-4 col-md-4";
 					//create an input element for quantity
-					var newquantity = document.createElement("input");
-					newquantity.id = "quantity" + num;
-					newquantity.className = "form-control input-sm";
-					//create text for quantity
-					newquantity.value = order.itemlist["item"+num].quantity;
+						var newquantity = document.createElement("input");
+						newquantity.id = "quantity" + num;
+						newquantity.className = "form-control input-sm";
+						//create text for quantity
+						newquantity.value = order.itemlist["item"+num].quantity;
 					//append input element (newquantity) to quantity div (newquantitydiv)
 					newquantitydiv.appendChild(newquantity);
 					//append div element (newquantitydiv) to main cost div (newcostdiv)
@@ -280,17 +280,16 @@ function fillOrder(order){
 					newdeletediv.id = "itemdeletediv" + num;
 					newdeletediv.className = "col-xs-2 col-sm-2 col-md-2";
 					//create button element for delete
-					var newdelete = document.createElement("input");
-					newdelete.type = "button";
-					newdelete.id = "btndelete" + num;
-					newdelete.value = "X";
-					newdelete.className = "delete_text"
-					/*newdelete.className = "btn btn-link btn-md";*/ //note: span removed to allow for fDelete to work
-					newdelete.index = num;
-					//create span element for delete button
-					/*var newdeletespan = document.createElement("span");*/
-					/*newdeletespan.className = "glyphicon glyphicon-trash";*/
-					/*newdelete.appendChild(newdeletespan);*/
+						var newdelete = document.createElement("button");
+						//newdelete.type = "button";
+						newdelete.id = "btndelete" + num;
+						newdelete.className = "btn btn-link btn-md"; //note: span removed to allow for fDelete to work
+							//create span element for delete button
+							var newdeletespan = document.createElement("span");
+							newdeletespan.className = "glyphicon glyphicon-trash";
+							newdeletespan.index = num;
+					//append span element (newdeletespan) to the input element(newdelete)
+					newdelete.appendChild(newdeletespan);
 					//append input element (newdelete) to delete div (newdeletediv)
 					newdeletediv.appendChild(newdelete);
 					//append div element (newdeletediv) to main cost div (newcostdiv)
@@ -316,11 +315,10 @@ function fillOrder(order){
 
 	// Function to delete items from Purchase Details
 	function fDelete(e){ //e is for event
-		var num = e.target.index; // index of the element that triggered the event
+		// index of the element that triggered the event: e.target => object HTMLSpanElement
+		var num = e.target.index; 
 		//if quantity > 1
 		//remove one quantity from item in itemlist object
-		alert(" e.target: " +  e.target); //for testing purposes
-		alert("my num: " + num); //for testing purposes
 
 		if (order.itemlist["item" + num].quantity > 0) {
 			//delete 1 quantity
