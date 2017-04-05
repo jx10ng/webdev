@@ -6,8 +6,10 @@ function get("getOrder.json") {
   // Return a new promise
   	return new Promise( function(resolve, reject) {
 	    var xmlhttp = new XMLHttpRequest(); 
-	    xmlhttp.open('GET', "getOrder.json");
-
+	    xmlhttp.open('GET', "getOrder.json", true);
+		// Make the request
+		xmlhttp.send();
+	    
 	    xmlhttp.onload = function() {
 	    	//if everything works 
 			if (xmlhttp.status == 200) {
@@ -27,11 +29,12 @@ function get("getOrder.json") {
 			reject( Error("Network Error") );
 		};
 
-	    // Make the request
-		xmlhttp.send();
+	    
 	});
 	
-	get("getOrder.json").then(function(response) {console.log("Success!", response);}, function(error) {console.error("Failed!", error);})
+	get("getOrder.json").then(
+		function(response) {console.log("Success!", response);}, 
+		function(error) {console.error("Failed!", error);})
 }
 
 function fillOrder(order){
